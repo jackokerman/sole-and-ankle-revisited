@@ -5,7 +5,7 @@
  * to other projects. They're quick imperfect implementations
  * for the known, fixed data we work with here.
  */
-import differenceInDays from 'date-fns/differenceInDays';
+import differenceInDays from "date-fns/differenceInDays";
 
 export function formatPrice(price) {
   return `$${price / 100}`;
@@ -17,4 +17,14 @@ export function pluralize(string, num) {
 
 export function isNewShoe(releaseDate) {
   return differenceInDays(new Date(), releaseDate) < 30;
+}
+
+/**
+ * Adds an alpha value to an hsl color string
+ */
+export function opacify(color, alpha) {
+  const [hue, saturation, lightness] = color
+    .slice(color.indexOf("(") + 1, color.indexOf(")"))
+    .split(" ");
+  return `hsla(${hue}, ${saturation}, ${lightness}, ${alpha})`;
 }
